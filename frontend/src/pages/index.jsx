@@ -18,8 +18,8 @@ export default function Home() {
             </div>
           </Link>
         </div>
-        <Box sx={{position: 'absolute', top:'10px', left:'10px'}}>
-        <UserInfo />
+        <Box sx={{ position: "absolute", top: "10px", left: "10px" }}>
+          <UserInfo />
         </Box>
       </main>
     </Page>
