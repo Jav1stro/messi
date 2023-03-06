@@ -39,6 +39,11 @@ export default function TemporaryDrawer() {
       link: "/dashboard",
     },
     {
+      title: 'Register',
+      icon: 'R',
+      link:'/register'
+  },
+    {
       title: "MessiPage",
       icon: <MailIcon />,
       link: "/messiPage",
