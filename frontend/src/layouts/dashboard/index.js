@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import UserInfo from "../../compoments/userInfo";
 import Drawer from "../../compoments/drawer";
+import theme from '../../theme'
 
 
 export default function DasboardLayout({ children }) {
@@ -9,9 +10,7 @@ export default function DasboardLayout({ children }) {
       sx={{
         width: "100vw",
         height: "100vh",
-        backgroundImage: "url(/assets/dashboardBG.jpg)",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
+        backgroundColor: `${theme.colors.white}`
       }}
     >
       <Drawer />

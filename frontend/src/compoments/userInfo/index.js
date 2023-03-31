@@ -7,6 +7,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
+import theme from "../../theme";
 
 import { useRouter } from "next/router";
 // redux
@@ -22,8 +23,6 @@ const UserInfo = () => {
   const router = useRouter();
   const { fullName } = useSelector((state) => state.user);
 
-  console.log("user", fullName);
-
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -37,18 +36,23 @@ const UserInfo = () => {
     router.push("/");
     dispatch(unsetUser());
   };
-  const handleLogIn = ()=>{
-    if(router.pathname === '/auth/login'){
-      setOpen(false)
+  const handleLogIn = () => {
+    if (router.pathname === "/auth/login") {
+      setOpen(false);
+    } else {
+      router.push("auth/login");
     }
-    else{
-      router.push('auth/login')
-    }
-  }
+  };
   return (
     <div>
       <Button onClick={handleClickOpen}>
-        <FaceIcon sx={{ width: "100px", height: "100px", color: fullName ? 'rgba(200,200,200,1)' : 'rgba(200,200,200,0.3)' }} />{" "}
+        <FaceIcon
+          sx={{
+            width: "100px",
+            height: "100px",
+            color: fullName ? `${theme.colors.blue}` : `${theme.colors.red}`,
+          }}
+        />{" "}
       </Button>
       <Dialog
         open={open}
@@ -93,9 +97,11 @@ const UserInfo = () => {
             <Button onClick={handleLogOut} sx={{ color: "rgb(200,100,100)" }}>
               Logout
             </Button>
-          ) : <Button onClick={handleLogIn} sx={{ color: "rgb(100,200,100)" }}>
-          Login
-        </Button>}
+          ) : (
+            <Button onClick={handleLogIn} sx={{ color: "rgb(100,200,100)" }}>
+              Login
+            </Button>
+          )}
           <Button onClick={handleClose} sx={{ color: "rgb(200,100,100)" }}>
             Close
           </Button>

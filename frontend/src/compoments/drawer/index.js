@@ -13,6 +13,8 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 
+import theme from '../../theme'
+
 export default function TemporaryDrawer() {
   const [state, setState] = React.useState({
     top: false,
@@ -49,9 +51,9 @@ export default function TemporaryDrawer() {
       link: "/messiPage",
     },
     {
-        title: 'Carb Counter',
-        icon: 'C',
-        link:'/carb'
+        title: 'Form',
+        icon: 'F',
+        link:'/form'
     }
   ];
 
@@ -59,11 +61,13 @@ export default function TemporaryDrawer() {
     <Box
       sx={{
         width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
-        margin:'auto 0',
-        backgroundColor: "rgba(200,200,00,0.3)",
-        border: '2px solid rgba(200,200,0,0.7)',
-        height:'300px',
+        margin:'auto',
+        backgroundColor:`${theme.colors.black}`,
+        color: `${theme.colors.white}`,
+        height:'100%',
         borderRadius: "15px",
+        paddingTop:'70px',
+        paddingLeft:'30px'
       }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
@@ -74,7 +78,7 @@ export default function TemporaryDrawer() {
           <Link href={item.link}>
             <ListItem key={item.title} disablePadding>
               <ListItemButton>
-                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemIcon sx={{color:`${theme.colors.red}`}}>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.title} />
               </ListItemButton>
             </ListItem>
@@ -90,13 +94,13 @@ export default function TemporaryDrawer() {
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>
             <MenuOpenIcon
-              sx={{ color: "white", width: "100px", height: "100px" }}
+              sx={{ color: `${theme.colors.blue}`, width: "100px", height: "100px" }}
             />
           </Button>
           <Drawer
           PaperProps={{
             sx: {
-              backgroundColor: "rgba(200,200,200,0.5)",
+              backgroundColor: 'transparent',
               color: "black",
 
             }

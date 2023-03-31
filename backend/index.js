@@ -14,7 +14,7 @@ app.use('/api', apiRouter);
 app.use('/users', userRouter);
 
 
-const port = 3001;
+const port = 3010;
 
 app.listen(port,()=>{
     console.log('listening on port '+ port);

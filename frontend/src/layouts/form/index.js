@@ -1,19 +1,19 @@
 import Box from "@mui/material/Box";
 import UserInfo from "../../compoments/userInfo";
 import Drawer from "../../compoments/drawer";
+import theme from '../../theme'
 
-export default function CarbLayout({ children }) {
+
+export default function FormLayout({ children }) {
   return (
     <Box
       sx={{
         width: "100vw",
         height: "100vh",
-        backgroundImage: "url(/assets/dashboardBG.jpg)",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
+        backgroundColor: `${theme.colors.black}`,
       }}
     >
-      <Drawer />
+      {/* <Drawer /> */}
 
       <Box sx={{ position: "absolute", top: "0px", right: "10px" }}>
         <UserInfo />

@@ -1,14 +1,14 @@
 import { useState } from "react";
-import CarbLayout from "../../layouts/carb";
+import FormLayout from "../../layouts/form";
 import Page from "../../compoments/Page";
 import { Typography, Box } from "@mui/material";
-import FormCarbs from "../../compoments/carb/Form";
+import Form from "../../compoments/form";
 
-const CarbCounterPage = () => {
+const FormPage = () => {
   return (
-    <Page title="Carb Counter">
-      <CarbLayout>
-        <Box
+    <Page title="Form">
+      {/* <FormLayout> */}
+        {/* <Box
           sx={{
             textAlign: "center",
             display: "flex",
@@ -17,14 +17,12 @@ const CarbCounterPage = () => {
             alignItems: "center",
             gap: "75px",
           }}
-        >
-          <h1>Contador de carbohidratos</h1>
-
-          <FormCarbs />
-        </Box>
-      </CarbLayout>
+        > */}
+          <Form />
+        {/* </Box> */}
+      {/* </FormLayout> */}
     </Page>
   );
 };
 
-export default CarbCounterPage;
+export default FormPage;

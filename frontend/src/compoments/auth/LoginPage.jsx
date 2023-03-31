@@ -22,7 +22,7 @@ const LoginPageComponent = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .get("http://localhost:3001/users")
+      .get("http://localhost:3010/users")
       .then((response) => {
         const users = response.data;
         const userToLog = users.find(
