@@ -75,7 +75,7 @@ export default function TemporaryDrawer() {
     >
       <List>
         {items.map((item, index) => (
-          <Link href={item.link}>
+          <Link href={item.link}  key={index}>
             <ListItem key={item.title} disablePadding>
               <ListItemButton>
                 <ListItemIcon sx={{color:`${theme.colors.red}`}}>{item.icon}</ListItemIcon>
