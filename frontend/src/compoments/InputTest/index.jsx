@@ -16,14 +16,18 @@ const InputTest = ({
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploading, setUploading] = useState("");
 
+
+const handleFile = (e)=>{
+    console.log('filechange')
+}
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     const maxSize = 5 * 1024 * 1024; // 5MB en bytes
     setSelectedFile(file);
     setUploadProgress(0);
-
     if (file) {
-      setUploading("uploading");
+        console.log('file')
       const interval = setInterval(() => {
         setUploadProgress((prevProgress) => {
           if (prevProgress >= 100) {
@@ -237,7 +241,7 @@ const InputTest = ({
             <input
               type="file"
               className={styles.inputFile}
-              onChange={handleFileChange}
+              onChangeCapture={handleFileChange}
               accept=".pdf,.doc,.docx"
               {...register(name, {
                 required: "Required",
