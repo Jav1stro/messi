@@ -95,30 +95,27 @@ export default function HookForm() {
   };
 
   const checkAltQuestion = (quest, altquest) => {
-    const questionValue = watch(quest.title) || [];
+    // questionValue no trae bien el valor
+    const questionValue = watch(quest.item) || [];
 
     if (quest.type === "checkbox") {
-      console.log("questionValue", questionValue);
       // si dentro de quesrtionValue esta el altquest.visibleIf tengo que devolver esa altquest
 
-      if (questionValue.includes(altquest.visibleIf)) {
-        console.log("entro");
+      if (questionValue.includes(altquest.visibleif)) {
         return <h3 key={altquest.id}>Si!/{altquest.title}</h3>;
       }
     } else {
       // console.log("Entra por NO ser tipo checkbox");
       if (altquest.visibleIf === questionValue) {
-        console.log("entro");
         return <h3 key={altquest.id}>Si!/{altquest.title}</h3>;
       }
     }
   };
 
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       {data.map((question, i) => {
-        const questionTitle = question.title;
+        const questionTitle = JSON.stringify(question.item);
         return (
           <div key={i} className={styles.questionContainer}>
             <div className={styles.question} key={i}>
@@ -129,13 +126,13 @@ export default function HookForm() {
                 <>
                   <input
                     type={question.type}
+                    name={questionTitle}
                     className={styles.inputText}
-                    minLength={question.minLength}
                     {...register(questionTitle, {
                       required: "This is required",
                       minLength: {
-                        value: `${question.minLength}`,
-                        message: `Min length is ${question.minLength}`,
+                        value: 10,
+                        message: `Min length is 30`,
                       },
                     })}
                   />
@@ -193,7 +190,7 @@ export default function HookForm() {
               {question.type === "radio" && (
                 <>
                   <fieldset
-                    {...register(questionTitle, { validate: validateRadios })}
+                  // {...register(questionTitle, { validate: validateRadios })}
                   >
                     {question.options.map((option) => (
                       <div key={option}>
@@ -201,7 +198,9 @@ export default function HookForm() {
                           type="radio"
                           id={option}
                           value={option}
-                          {...register(questionTitle)}
+                          {...register(questionTitle, {
+                            validate: validateRadios,
+                          })}
                         />
                         <label htmlFor={option}>{option}</label>
                         <p>{errors[questionTitle]?.message}</p>
@@ -209,32 +208,13 @@ export default function HookForm() {
                     ))}
                   </fieldset>
                   {question.altquestion.map((altquest) => {
-                    // if (altquest.visibleIf === altQuest) {
-                    //   return (
-                    //     <div key={altquest.id}>
-                    //       <label>{altquest.title}</label>
-                    //       <input
-                    //         type={altquest.type}
-                    //         {...register(altquest.title, {
-                    //           required: "This is required",
-                    //         })}
-                    //       />
-                    //       <p>{errors[questionTitle]?.message}</p>
-                    //     </div>
-                    //   );
-                    // }
                     return checkAltQuestion(question, altquest);
                   })}
                 </>
               )}
               {question.type === "checkbox" && (
                 <>
-                  <fieldset
-                    {...register(questionTitle, {
-                      validate: validateCheckbox,
-                      required: "Please select at leassadt one",
-                    })}
-                  >
+                  <fieldset>
                     {question.options.map((option) => (
                       <div key={option}>
                         <input
